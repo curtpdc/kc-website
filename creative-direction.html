@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Direction - Kayla Clark | Visual Storytelling & Concept Development</title>
+    <meta name="description" content="Explore Kayla Clark's creative direction work including concept development, moodboard creation, and visual storytelling projects.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .case-study-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+        
+        .case-study-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .case-study-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .case-study-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+        
+        .case-study-card:hover .case-study-image img {
+            transform: scale(1.05);
+        }
+        
+        .case-study-content {
+            padding: 2rem;
+        }
+        
+        .case-study-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .case-study-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .case-study-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .process-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .process-step h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .modal.active {
+            display: block;
+        }
+        
+        .modal-content {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 10;
+        }
+        
+        .modal-header {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .modal-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        .moodboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .moodboard-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .moodboard-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .final-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .final-image {
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .final-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">KAYLA CLARK</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                <li><a href="creative-direction.html" class="nav-link active">Creative Direction</a></li>
+                <li><a href="index.html#contact" class="nav-link">Book Kayla</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="height: 60vh; background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);">
+        <div class="hero-content">
+            <h1 class="hero-title" style="font-size: clamp(2.5rem, 6vw, 4rem);">Creative Direction</h1>
+            <p class="hero-description">Building visual concepts from idea to execution</p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="section">
+        <div class="container">
+            <div class="creative-content fade-in" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h2>Concepts With Purpose</h2>
+                <p style="font-size: 1.2rem; line-height: 1.7; margin-bottom: 2rem;">Kayla builds visual concepts from idea to execution — including moodboards, styling direction, posing guidance, and on-set creative leadership. Every project begins with understanding the story that needs to be told.</p>
+                <p>From initial concept development to final execution, each creative direction project is approached with intention, collaboration, and an unwavering commitment to bringing visions to life.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Grid -->
+    <section class="section" style="background: var(--secondary-color);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Case Studies</h2>
+                <p>Explore detailed breakdowns of creative direction projects</p>
+            </div>
+            
+            <div class="case-study-grid fade-in">
+                <!-- Vintage Barbie Case Study -->
+                <div class="case-study-card" data-case="vintage-barbie">
+                    <div class="case-study-image">
+                        <img src="images/creative-direction/vintage-barbie.jpg" alt="Vintage Barbie Concept" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
+                            <span>Vintage Barbie Concept</span>
+                        </div>
+                    </div>
+                    <div class="case-study-content">
+                        <h3 class="case-study-title">Vintage Barbie</h3>
+                        <p class="case-study-description">A nostalgic editorial concept blending 1960s glamour with contemporary fashion, creating a dreamy, doll-like aesthetic.</p>
+                        <div class="case-study-tags">
+                            <span class="tag">Editorial</span>
+                            <span class="tag">Vintage</span>
+                            <span class="tag">Fashion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Golden Hour Case Study -->
+                <div class="case-study-card" data-case="golden-hour">
+                    <div class="case-study-image">
+                        <img src="images/creative-direction/golden-hour.jpg" alt="Golden Hour Beauty" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
+                            <span>Golden Hour Beauty</span>
+                        </div>
+                    </div>
+                    <div class="case-study-content">
+                        <h3 class="case-study-title">Golden Hour Beauty</h3>
+                        <p class="case-study-description">Natural light beauty shoot capturing the magic of golden hour with warm, ethereal tones and organic styling.</p>
+                        <div class="case-study-tags">
+                            <span class="tag">Beauty</span>
+                            <span class="tag">Natural Light</span>
+                            <span class="tag">Organic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soft Glam Studio Case Study -->
+                <div class="case-study-card" data-case="soft-glam">
+                    <div class="case-study-image">
+                        <img src="images/creative-direction/soft-glam.jpg" alt="Soft Glam Studio" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
+                            <span>Soft Glam Studio</span>
+                        </div>
+                    </div>
+                    <div class="case-study-content">
+                        <h3 class="case-study-title">Soft Glam Studio</h3>
+                        <p class="case-study-description">Controlled studio environment focusing on clean beauty with subtle glamour and sophisticated lighting techniques.</p>
+                        <div class="case-study-tags">
+                            <span class="tag">Studio</span>
+                            <span class="tag">Beauty</span>
+                            <span class="tag">Minimalist</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Street Editorial Case Study -->
+                <div class="case-study-card" data-case="street-editorial">
+                    <div class="case-study-image">
+                        <img src="images/creative-direction/urban-editorial.jpg" alt="Urban Editorial" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
+                            <span>Urban Editorial</span>
+                        </div>
+                    </div>
+                    <div class="case-study-content">
+                        <h3 class="case-study-title">Urban Editorial</h3>
+                        <p class="case-study-description">Fashion-forward street photography combining urban architecture with high-fashion styling and dynamic poses.</p>
+                        <div class="case-study-tags">
+                            <span class="tag">Editorial</span>
+                            <span class="tag">Urban</span>
+                            <span class="tag">Fashion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Minimalist Beauty Case Study -->
+                <div class="case-study-card" data-case="minimalist-beauty">
+                    <div class="case-study-image">
+                        <img src="images/creative-direction/minimalist-beauty.jpg" alt="Minimalist Beauty" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
+                            <span>Minimalist Beauty</span>
+                        </div>
+                    </div>
+                    <div class="case-study-content">
+                        <h3 class="case-study-title">Minimalist Beauty</h3>
+                        <p class="case-study-description">Clean, modern approach to beauty photography emphasizing natural features and subtle enhancement.</p>
+                        <div class="case-study-tags">
+                            <span class="tag">Beauty</span>
+                            <span class="tag">Minimalist</span>
+                            <span class="tag">Clean</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commercial Campaign Case Study -->
+                <div class="case-study-card" data-case="commercial-campaign">
+                    <div class="case-study-image">
+                        <img src="images/creative-direction/commercial-campaign.jpg" alt="Commercial Campaign" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
+                            <span>Commercial Campaign</span>
+                        </div>
+                    </div>
+                    <div class="case-study-content">
+                        <h3 class="case-study-title">Brand Campaign</h3>
+                        <p class="case-study-description">Lifestyle brand campaign focusing on authentic moments and relatable beauty with commercial appeal.</p>
+                        <div class="case-study-tags">
+                            <span class="tag">Commercial</span>
+                            <span class="tag">Lifestyle</span>
+                            <span class="tag">Brand</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creative Process -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Creative Process</h2>
+                <p>How concepts come to life from initial idea to final execution</p>
+            </div>
+            
+            <div class="process-steps fade-in">
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Concept Development</h3>
+                    <p>Understanding the vision, target audience, and emotional story we want to tell through collaborative brainstorming and research.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Moodboard Creation</h3>
+                    <p>Visual research and curation to establish the aesthetic direction, color palette, styling, and overall mood of the project.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Styling Direction</h3>
+                    <p>Wardrobe selection, prop sourcing, and styling choices that support the concept and enhance the visual narrative.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Posing Guidance</h3>
+                    <p>Directing poses and expressions that align with the concept while feeling natural and authentic to the story being told.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>On-Set Leadership</h3>
+                    <p>Coordinating the creative team, maintaining the vision throughout the shoot, and adapting to capture the best possible results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section cta">
+        <div class="container">
+            <div class="fade-in">
+                <h2>Ready to Bring Your Vision to Life?</h2>
+                <p>Whether you have a clear concept or just the beginning of an idea, let's collaborate to create something meaningful and visually compelling.</p>
+                <a href="index.html#contact" class="btn btn-outline">Start Your Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Modal -->
+    <div id="case-study-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-header">
+                <img id="modal-hero-image" src="" alt="">
+            </div>
+            <div class="modal-body">
+                <h2 id="modal-title"></h2>
+                <p id="modal-concept"></p>
+                
+                <h3>Moodboard</h3>
+                <div class="moodboard-grid" id="modal-moodboard"></div>
+                
+                <h3>Final Images</h3>
+                <div class="final-images" id="modal-final-images"></div>
+                
+                <h3>Kayla's Role</h3>
+                <ul id="modal-role"></ul>
+                
+                <h3>Reflection</h3>
+                <p id="modal-reflection"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KAYLA CLARK</h3>
+                    <p>Model & Creative Director</p>
+                    <p>Crafting visual stories with intention</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p><a href="portfolio.html">Modeling</a></p>
+                    <p><a href="creative-direction.html">Creative Direction</a></p>
+                    <p><a href="index.html#contact">Collaborations</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <p><a href="mailto:kaylacierra@gmail.com">kaylacierra@gmail.com</a></p>
+                    <p>DMV Based</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/kaylacierra" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com/@kaylacierra" target="_blank" class="social-link">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Kayla Clark. Made with love in the DMV.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Case study modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const caseStudyCards = document.querySelectorAll('.case-study-card');
+            const modal = document.getElementById('case-study-modal');
+            const modalClose = document.querySelector('.modal-close');
+            
+            // Case study data
+            const caseStudies = {
+                'vintage-barbie': {
+                    title: 'Vintage Barbie',
+                    heroImage: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&h=400&fit=crop',
+                    concept: 'A nostalgic editorial concept that blends 1960s glamour with contemporary fashion sensibilities. The vision was to create a dreamy, doll-like aesthetic that feels both vintage and timeless, capturing the essence of classic Barbie while maintaining modern sophistication.',
+                    moodboard: [
+                        'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&h=200&fit=crop',
+                        'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=200&h=200&fit=crop',
+                        'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=200&h=200&fit=crop',
+                        'https://images.unsplash.com/photo-1506629905607-c52b1b8e8d19?w=200&h=200&fit=crop',
+                        'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=200&h=200&fit=crop',
+                        'https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=200&h=200&fit=crop'
+                    ],
+                    finalImages: [
+                        'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=300&h=400&fit=crop',
+                        'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&h=400&fit=crop',
+                        'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=300&h=400&fit=crop',
+                        'https://images.unsplash.com/photo-1506629905607-c52b1b8e8d19?w=300&h=400&fit=crop'
+                    ],
+                    role: [
+                        'Concept development and vision creation',
+                        'Vintage-inspired moodboard curation',
+                        'Period-appropriate styling direction',
+                        'Doll-like posing and expression guidance',
+                        'On-set creative direction and team coordination'
+                    ],
+                    reflection: 'This project taught me the importance of balancing nostalgia with contemporary appeal. The challenge was creating something that felt authentically vintage without appearing dated, and I loved how the team brought such playful energy to the concept.'
+                },
+                'golden-hour': {
+                    title: 'Golden Hour Beauty',
+                    heroImage: 'https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=800&h=400&fit=crop',
+                    concept: 'A natural light beauty shoot designed to capture the magic of golden hour. The concept focused on organic beauty, warm tones, and the ethereal quality that only natural light can provide, creating images that feel both intimate and luminous.',
+                    moodboard: [
+                        'https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=200&h=200&fit=crop',
+                        'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=200&h=200&fit=crop',
+                        'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop',
+                        'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=200&h=200&fit=crop',
+                        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop',
+                        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop'
+                    ],
+                    finalImages: [
+                        'https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=300&h=400&fit=crop',
+                        'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=300&h=400&fit=crop',
+                        'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=400&fit=crop',
+                        'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=300&h=400&fit=crop'
+                    ],
+                    role: [
+                        'Natural light timing and location scouting',
+                        'Organic beauty concept development',
+                        'Minimal styling for authentic feel',
+                        'Natural expression and movement direction',
+                        'Golden hour timing coordination'
+                    ],
+                    reflection: 'Working with natural light taught me patience and adaptability. The brief window of perfect golden hour light meant we had to be completely prepared and work efficiently, but the results were absolutely magical.'
+                }
+                // Add more case studies as needed
+            };
+            
+            // Open modal
+            caseStudyCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const caseId = card.dataset.case;
+                    const caseData = caseStudies[caseId];
+                    
+                    if (caseData) {
+                        // Populate modal content
+                        document.getElementById('modal-title').textContent = caseData.title;
+                        document.getElementById('modal-hero-image').src = caseData.heroImage;
+                        document.getElementById('modal-concept').textContent = caseData.concept;
+                        document.getElementById('modal-reflection').textContent = caseData.reflection;
+                        
+                        // Populate moodboard
+                        const moodboardContainer = document.getElementById('modal-moodboard');
+                        moodboardContainer.innerHTML = '';
+                        caseData.moodboard.forEach(imgSrc => {
+                            const div = document.createElement('div');
+                            div.className = 'moodboard-item';
+                            div.innerHTML = `<img src="${imgSrc}" alt="Moodboard image">`;
+                            moodboardContainer.appendChild(div);
+                        });
+                        
+                        // Populate final images
+                        const finalImagesContainer = document.getElementById('modal-final-images');
+                        finalImagesContainer.innerHTML = '';
+                        caseData.finalImages.forEach(imgSrc => {
+                            const div = document.createElement('div');
+                            div.className = 'final-image';
+                            div.innerHTML = `<img src="${imgSrc}" alt="Final image">`;
+                            finalImagesContainer.appendChild(div);
+                        });
+                        
+                        // Populate role
+                        const roleContainer = document.getElementById('modal-role');
+                        roleContainer.innerHTML = '';
+                        caseData.role.forEach(roleItem => {
+                            const li = document.createElement('li');
+                            li.textContent = roleItem;
+                            roleContainer.appendChild(li);
+                        });
+                        
+                        // Show modal
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            // Close modal
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
