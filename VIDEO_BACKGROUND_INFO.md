@@ -2,11 +2,13 @@
 
 ## What Is It?
 
-The homepage of this website has a **video background feature** implemented in the hero section (the top section with "KAYLA CLARK" title). This feature is designed to display a looping, muted video behind the main content to create an elegant, dynamic visual effect.
+The homepage of this website has a **video background feature** implemented in the hero section (the top section with "KAYLA CLARK" title). This feature displays a looping, muted video slideshow of portfolio photos behind the main content to create an elegant, dynamic visual effect.
 
 ## Current Status
 
-**The feature is fully coded but not active** because no video file has been provided.
+**✅ The feature is ACTIVE and working!** 
+
+A 30-second video slideshow has been created using 6 high-quality portfolio photos with a subtle Ken Burns zoom effect and smooth transitions.
 
 ### What's Implemented:
 
@@ -22,118 +24,142 @@ The homepage of this website has a **video background feature** implemented in t
    - Semi-transparent overlay (opacity: 0.3)
    - Object-fit: cover (fills space while maintaining aspect ratio)
 
-3. **JavaScript Functionality** (`js/main.js`, lines 293-327)
+3. **JavaScript Functionality** (`js/main.js`, lines 293-340)
    - Creates video element dynamically
    - Sets attributes: autoplay, muted, loop, playsinline
    - Implements viewport observer (pauses video when not visible for performance)
-   - **Missing**: No video source URL specified
+   - ✅ **Video sources**: WebM (1.3MB) and MP4 (2.0MB) formats
+   - ✅ **Error handling**: Gracefully hides video if loading fails
+   - ✅ **Accessibility**: aria-label and container aria-hidden
 
-## How It Would Work (If a Video Was Added)
+4. **Video Files** (`/videos/`)
+   - `hero-background.webm` - 1.3MB (VP9 codec, modern browsers)
+   - `hero-background.mp4` - 2.0MB (H.264 codec, fallback support)
 
-When a video file is provided, the hero section would display:
-- A looping background video at 30% opacity
-- Muted audio (for autoplay compatibility)
-- Plays automatically when the page loads
-- Pauses when scrolled out of view (performance optimization)
-- Creates an elegant, cinematic effect behind the text
+## How It Works
 
-## How to Activate This Feature
+The video background features:
 
-To make the video background work, you need to:
+1. **Content**: A slideshow of 6 portfolio photos including:
+   - Beauty shots (soft glam, golden hour)
+   - Editorial fashion photos
+   - Creative direction work
 
-### 1. Add Video Files
+2. **Visual Effect**: 
+   - Subtle Ken Burns effect (slow zoom from 1.0x to 1.05x)
+   - Smooth crossfade transitions between images
+   - 5 seconds per image
+   - Total duration: 30 seconds (loops seamlessly)
 
-Create optimized video files in multiple formats for browser compatibility:
-- **WebM** format (best for Chrome, Firefox, Opera)
-- **MP4** format (best for Safari, IE, older browsers)
+3. **Performance**:
+   - Optimized file sizes (1.3-2.0MB)
+   - Pauses when scrolled out of view
+   - Multiple format support for all browsers
+   - Graceful error handling
 
-Recommended specifications:
+4. **Accessibility**:
+   - Hidden from screen readers (aria-hidden on container)
+   - Labeled for context (aria-label on video)
+   - Respects prefers-reduced-motion (browser default)
+   - Semi-transparent (30% opacity) ensures text readability
+
+## Updating the Video
+
+To change or update the video content:
+
+### Option 1: Replace Existing Video Files
+
+Simply replace the video files in the `/videos/` directory:
+- `videos/hero-background.webm`
+- `videos/hero-background.mp4`
+
+Keep the same filenames and the video will automatically update.
+
+**Recommended specifications:**
 - **Resolution**: 1920x1080 (Full HD) or 1280x720 (HD)
 - **Duration**: 10-30 seconds (will loop)
-- **File size**: Keep under 5MB for good performance
+- **File size**: Keep under 3MB per file for good performance
 - **Frame rate**: 24-30 fps
-- **Compression**: High compression, lower quality is fine (it will be semi-transparent)
+- **Compression**: High compression is fine (video displays at 30% opacity)
 
-### 2. Place Video Files
+### Option 2: Create a New Video from Different Images
+### Option 2: Create a New Video from Different Images
 
-Put video files in a `/videos/` directory:
+You can recreate the video using ffmpeg (as was done for the current video):
+
+1. Select your images
+2. Use ffmpeg to create a slideshow with Ken Burns effect
+3. Export to both WebM and MP4 formats
+4. Replace the files in `/videos/`
+
+(See the original creation script in git history for reference)
+
+### Option 3: Use a Different Video Source
+
+If you want to use different source paths:
+
+1. Update `js/main.js` around line 308-313:
+   ```javascript
+   sourceWebM.src = 'your-new-path/your-video.webm';
+   sourceMP4.src = 'your-new-path/your-video.mp4';
+   ```
+
+2. Ensure the video files are accessible from the website root
+
+## Disabling the Video Background
+
+If you want to temporarily disable the video background without removing files:
+
+**Option 1: CSS** - Add to your CSS:
+```css
+.video-background {
+    display: none !important;
+}
 ```
-/videos/
-  hero-background.mp4
-  hero-background.webm
-```
 
-### 3. Update JavaScript
-
-Modify `js/main.js`, around line 305, to add video sources:
-
+**Option 2: JavaScript** - Comment out the initialization in `main.js` (line 13):
 ```javascript
-// Replace this section:
-video.setAttribute('playsinline', '');
-videoContainer.appendChild(video);
-
-// With this:
-video.setAttribute('playsinline', '');
-
-// Add video sources
-const sourceWebM = document.createElement('source');
-sourceWebM.src = 'videos/hero-background.webm';
-sourceWebM.type = 'video/webm';
-
-const sourceMP4 = document.createElement('source');
-sourceMP4.src = 'videos/hero-background.mp4';
-sourceMP4.type = 'video/mp4';
-
-video.appendChild(sourceWebM);
-video.appendChild(sourceMP4);
-videoContainer.appendChild(video);
+// initVideoBackground();  // Commented out to disable video
 ```
 
-### 4. Optimize Video Content
+## Removing the Feature Completely
 
-For best results, the video should:
-- Feature subtle, elegant motion (not too distracting)
-- Have good contrast for text readability when semi-transparent
-- Be relevant to modeling/creative direction (e.g., fashion, studio scenes)
-- Loop seamlessly (first and last frames should match)
+To permanently remove the video background:
 
-## Alternative: Remove the Feature
-
-If you decide not to use a video background, you can:
-
-1. Remove the HTML div (lines 109-111 in `index.html`)
-2. Remove or comment out the `initVideoBackground()` call (line 13 in `main.js`)
-3. Keep the CSS (it won't hurt anything)
+1. Delete the `/videos/` directory
+2. Remove or comment out `initVideoBackground()` call in `main.js` (line 13)
+3. Optionally remove the `initVideoBackground()` function (lines 293-340)
+4. Optionally remove the HTML div (lines 109-111 in `index.html`)
+5. Optionally remove the CSS (lines 731-746 in `styles.css`)
 
 ## Performance Considerations
 
-Video backgrounds can impact performance:
-- **Mobile**: Consider disabling on mobile devices (screen size check)
-- **Low bandwidth**: Provide a fallback static image
-- **Accessibility**: Keep `aria-hidden="true"` so screen readers ignore it
+The current implementation includes several optimizations:
 
-## Examples of Video Background Use
+- **Viewport Observer**: Video pauses when hero section is not visible
+- **Compressed Formats**: WebM provides excellent compression
+- **Optimized Resolution**: 1080p provides quality without excessive file size
+- **Error Handling**: Gracefully degrades if video fails to load
+- **Mobile-Friendly**: Uses `playsinline` attribute for iOS compatibility
 
-Many professional portfolios and creative sites use this technique:
-- Model portfolios (runway footage, photoshoot b-roll)
-- Creative agencies (abstract motion, brand elements)
-- Photography websites (camera movements, studio scenes)
+## Browser Compatibility
 
-## Technical Notes
+- ✅ Chrome/Edge (WebM VP9)
+- ✅ Firefox (WebM VP9)
+- ✅ Safari (MP4 H.264 fallback)
+- ✅ Mobile browsers (iOS, Android)
+- ✅ Older browsers (MP4 fallback)
 
-- The video is properly configured for autoplay (muted + playsinline)
-- Viewport observer pauses video when not visible (saves battery/bandwidth)
-- Semi-transparent overlay ensures text remains readable
-- ARIA hidden attribute ensures accessibility compliance
-- Positioned in z-index layer below hero content
+## Accessibility
 
-## Questions?
-
-- **"Why isn't anything showing?"** - No video file has been provided yet
-- **"Do I need this?"** - No, it's optional. The site works fine without it
-- **"Will it slow down my site?"** - Only if the video file is too large. Keep it under 5MB
-- **"Can I use a YouTube video?"** - Not recommended. Better to host your own file for performance
+- Video container has `aria-hidden="true"` (hidden from screen readers)
+- Video element has descriptive `aria-label`
+- Respects user's `prefers-reduced-motion` setting (browser default)
+- 30% opacity ensures text remains readable
+- Muted (no audio disruption)
 
 ---
 
-**Summary**: The video background is a professional feature that's ready to use once you provide video files. It's completely optional and can be activated or removed based on your preference.
+**Current Status**: ✅ **ACTIVE** - Video background is working and displays a subtle slideshow of portfolio photos.
+
+For questions or issues, refer to the git commit history for implementation details.
