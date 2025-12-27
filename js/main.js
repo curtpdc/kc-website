@@ -288,62 +288,6 @@ function initSmoothScrolling() {
     });
 }
 
-// Video background functionality
-function initVideoBackground() {
-    const videoContainer = document.querySelector('.video-background');
-    if (!videoContainer) return;
-
-    // Create video element if it doesn't exist
-    let video = videoContainer.querySelector('video');
-    if (!video) {
-        video = document.createElement('video');
-        video.setAttribute('autoplay', '');
-        video.setAttribute('muted', '');
-        video.setAttribute('loop', '');
-        video.setAttribute('playsinline', '');
-        video.setAttribute('aria-label', 'Background video showcasing portfolio photos');
-        
-        // Add video sources (WebM for better compression, MP4 for fallback)
-        const sourceWebM = document.createElement('source');
-        sourceWebM.src = 'videos/hero-background.webm';
-        sourceWebM.type = 'video/webm';
-        
-        const sourceMP4 = document.createElement('source');
-        sourceMP4.src = 'videos/hero-background.mp4';
-        sourceMP4.type = 'video/mp4';
-        
-        video.appendChild(sourceWebM);
-        video.appendChild(sourceMP4);
-        videoContainer.appendChild(video);
-        
-        // Error handling for video loading
-        video.addEventListener('error', (e) => {
-            console.log('Video background failed to load, continuing without video');
-            videoContainer.style.display = 'none';
-        });
-    }
-
-    // Handle video loading and playback
-    video.addEventListener('loadeddata', () => {
-        video.play().catch(e => {
-            console.log('Video autoplay failed:', e);
-        });
-    });
-
-    // Pause video when not in viewport (performance optimization)
-    const videoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                video.play().catch(e => console.log('Video play failed:', e));
-            } else {
-                video.pause();
-            }
-        });
-    });
-
-    videoObserver.observe(videoContainer);
-}
-
 // Portfolio filtering (for portfolio pages)
 function initPortfolioFilter() {
     const filterButtons = document.querySelectorAll('.filter-btn');
