@@ -7,11 +7,41 @@
     <meta name="description" content="Kayla Clark is a DMV-based model and creative director known for blending elegance, emotion, and intentional storytelling. Professional modeling and creative direction services.">
     <meta name="keywords" content="model, creative director, DMV, Washington DC, photography, fashion, editorial, commercial, beauty">
     
+    <!-- Security -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Kayla Clark - Model & Creative Director">
     <meta property="og:description" content="DMV-based model and creative director crafting visual stories with intention.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kaylaclark.com">
+    <meta property="og:image" content="https://kaylaclark.com/images/about/kayla-portrait.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kayla Clark - Model & Creative Director">
+    <meta name="twitter:description" content="DMV-based model and creative director crafting visual stories with intention.">
+    <meta name="twitter:image" content="https://kaylaclark.com/images/about/kayla-portrait.jpg">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2c2c2c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Kayla Clark">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/icon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,10 +57,36 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kayla Clark",
+      "jobTitle": "Model & Creative Director",
+      "description": "DMV-based model and creative director known for blending elegance, emotion, and intentional storytelling",
+      "url": "https://kaylaclark.com",
+      "image": "https://kaylaclark.com/images/about/kayla-portrait.jpg",
+      "email": "kaylacierra@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "DMV"
+      },
+      "sameAs": [
+        "https://instagram.com/kaylacierra",
+        "https://tiktok.com/@kaylacierra"
+      ],
+      "knowsAbout": ["Fashion Modeling", "Beauty Photography", "Editorial Photography", "Creative Direction", "Brand Campaigns", "Visual Storytelling"]
+    }
+    </script>
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <a href="#home" class="logo">KAYLA CLARK</a>
             <ul class="nav-menu">
@@ -40,7 +96,7 @@
                 <li><a href="#creative-direction" class="nav-link">Creative Direction</a></li>
                 <li><a href="#contact" class="nav-link">Book Kayla</a></li>
             </ul>
-            <div class="hamburger">
+            <div class="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -50,10 +106,10 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="video-background">
+        <div class="video-background" aria-hidden="true">
             <!-- Video will be added via JavaScript for better performance -->
         </div>
-        <div class="hero-content">
+        <div class="hero-content" id="main-content">
             <h1 class="hero-title">KAYLA CLARK</h1>
             <h2 class="hero-subtitle">Model & Creative Director</h2>
             <p class="hero-description">Crafting visual stories with intention.</p>
@@ -73,7 +129,7 @@
             </div>
             <div class="work-grid fade-in">
                 <div class="work-item" data-category="beauty">
-                    <img src="images/beauty/beauty-1.jpg" alt="Soft Glam Beauty" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="images/beauty/beauty-1.jpg" alt="Soft Glam Beauty" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
                         <span>Soft Glam Beauty</span>
                     </div>
@@ -85,7 +141,7 @@
                     </div>
                 </div>
                 <div class="work-item" data-category="editorial">
-                    <img src="images/editorial/editorial-1.jpg" alt="Urban Editorial" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="images/editorial/editorial-1.jpg" alt="Urban Editorial" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
                         <span>Urban Editorial</span>
                     </div>
@@ -97,7 +153,7 @@
                     </div>
                 </div>
                 <div class="work-item" data-category="commercial">
-                    <img src="images/commercial/commercial-1.jpg" alt="Brand Campaign" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="images/commercial/commercial-1.jpg" alt="Brand Campaign" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
                         <span>Brand Campaign</span>
                     </div>
@@ -109,7 +165,7 @@
                     </div>
                 </div>
                 <div class="work-item" data-category="creative-direction">
-                    <img src="images/creative-direction/vintage-barbie.jpg" alt="Vintage Concept" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="images/creative-direction/vintage-barbie.jpg" alt="Vintage Concept" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
                         <span>Vintage Concept</span>
                     </div>
@@ -121,7 +177,7 @@
                     </div>
                 </div>
                 <div class="work-item" data-category="beauty">
-                    <img src="images/beauty/beauty-2.jpg" alt="Golden Hour Beauty" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="images/beauty/beauty-2.jpg" alt="Golden Hour Beauty" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
                         <span>Golden Hour Beauty</span>
                     </div>
@@ -133,7 +189,7 @@
                     </div>
                 </div>
                 <div class="work-item" data-category="editorial">
-                    <img src="images/editorial/editorial-2.jpg" alt="High Fashion Editorial" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="images/editorial/editorial-2.jpg" alt="High Fashion Editorial" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
                         <span>High Fashion Editorial</span>
                     </div>
@@ -163,7 +219,7 @@
                     <a href="about.html" class="btn btn-primary">Meet Kayla</a>
                 </div>
                 <div class="about-image">
-                    <img src="images/about/kayla-portrait.jpg" alt="Kayla Clark - Professional Portrait" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="images/about/kayla-portrait.jpg" alt="Kayla Clark - Professional Portrait" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 500px; display: none;">
                         <span>Kayla Clark<br>Professional Portrait</span>
                     </div>
@@ -293,5 +349,20 @@
 
     <!-- JavaScript -->
     <script src="js/main.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('SW registration failed:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>

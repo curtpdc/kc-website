@@ -35,6 +35,15 @@ function initNavigation() {
             navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
         });
+        
+        // Keyboard accessibility for hamburger
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            }
+        });
     }
 
     // Close mobile menu when clicking on links

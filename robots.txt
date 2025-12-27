@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow any temporary or system directories
+Disallow: /tmp/
+Disallow: /.git/
+
+# Sitemap location
+Sitemap: https://kaylaclark.com/sitemap.xml
