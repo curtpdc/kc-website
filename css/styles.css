@@ -549,6 +549,16 @@ html {
         visibility: visible;
     }
     
+    /* Fix hero section for mobile */
+    .hero {
+        height: 70vh;
+        min-height: 500px;
+    }
+    
+    .hero-background img {
+        object-position: center center;
+    }
+    
     .hero-buttons {
         flex-direction: column;
         align-items: center;
@@ -573,6 +583,12 @@ html {
     :root {
         --container-padding: 0 15px;
         --section-padding: 60px 0;
+    }
+    
+    /* Further reduce hero height on small phones */
+    .hero {
+        height: 60vh;
+        min-height: 450px;
     }
     
     .hero-title {
