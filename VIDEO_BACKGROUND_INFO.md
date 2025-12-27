@@ -22,7 +22,7 @@ The homepage of this website has a **video background feature** implemented in t
    - Semi-transparent overlay (opacity: 0.3)
    - Object-fit: cover (fills space while maintaining aspect ratio)
 
-3. **JavaScript Functionality** (`js/main.js`, lines 292-327)
+3. **JavaScript Functionality** (`js/main.js`, lines 293-327)
    - Creates video element dynamically
    - Sets attributes: autoplay, muted, loop, playsinline
    - Implements viewport observer (pauses video when not visible for performance)
