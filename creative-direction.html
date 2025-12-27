@@ -6,6 +6,14 @@
     <title>Creative Direction - Kayla Clark | Visual Storytelling & Concept Development</title>
     <meta name="description" content="Explore Kayla Clark's creative direction work including concept development, moodboard creation, and visual storytelling projects.">
     
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2c2c2c">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -215,8 +223,11 @@
     </style>
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <a href="index.html" class="logo">KAYLA CLARK</a>
             <ul class="nav-menu">
@@ -226,7 +237,7 @@
                 <li><a href="creative-direction.html" class="nav-link active">Creative Direction</a></li>
                 <li><a href="index.html#contact" class="nav-link">Book Kayla</a></li>
             </ul>
-            <div class="hamburger">
+            <div class="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -236,7 +247,7 @@
 
     <!-- Hero Section -->
     <section class="hero" style="height: 60vh; background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);">
-        <div class="hero-content">
+        <div class="hero-content" id="main-content">
             <h1 class="hero-title" style="font-size: clamp(2.5rem, 6vw, 4rem);">Creative Direction</h1>
             <p class="hero-description">Building visual concepts from idea to execution</p>
         </div>
