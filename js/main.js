@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initLightbox();
     initContactForm();
     initSmoothScrolling();
-    initVideoBackground();
 });
 
 // Navigation functionality
