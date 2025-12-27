@@ -302,7 +302,26 @@ function initVideoBackground() {
         video.setAttribute('muted', '');
         video.setAttribute('loop', '');
         video.setAttribute('playsinline', '');
+        video.setAttribute('aria-label', 'Background video showcasing portfolio photos');
+        
+        // Add video sources (WebM for better compression, MP4 for fallback)
+        const sourceWebM = document.createElement('source');
+        sourceWebM.src = 'videos/hero-background.webm';
+        sourceWebM.type = 'video/webm';
+        
+        const sourceMP4 = document.createElement('source');
+        sourceMP4.src = 'videos/hero-background.mp4';
+        sourceMP4.type = 'video/mp4';
+        
+        video.appendChild(sourceWebM);
+        video.appendChild(sourceMP4);
         videoContainer.appendChild(video);
+        
+        // Error handling for video loading
+        video.addEventListener('error', (e) => {
+            console.log('Video background failed to load, continuing without video');
+            videoContainer.style.display = 'none';
+        });
     }
 
     // Handle video loading and playback
