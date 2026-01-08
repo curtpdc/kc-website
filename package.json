@@ -1,21 +1,29 @@
 {
   "name": "kc-website",
-  "version": "2.0.0",
-  "description": "Kayla Clark Professional Model Portfolio Website",
+  "version": "3.0.0",
+  "description": "Kayla Clark Professional Model Portfolio Website - Next.js + React",
   "scripts": {
-    "build:ts": "tsc",
-    "watch:ts": "tsc --watch",
-    "dev": "npm run watch:ts",
-    "type-check": "tsc --noEmit",
-    "build": "npm run build:ts",
-    "serve": "python3 -m http.server 8080",
-    "start": "npm run build && npm run serve"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
-  "keywords": ["portfolio", "model", "website"],
+  "keywords": ["portfolio", "model", "website", "nextjs", "react"],
   "author": "Kayla Clark",
   "license": "MIT",
+  "dependencies": {
+    "next": "16.1.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
   "devDependencies": {
-    "typescript": "^5.3.3",
-    "@types/node": "^20.10.5"
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
