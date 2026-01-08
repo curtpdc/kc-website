@@ -1,29 +1,6 @@
 "use strict";
 // Kayla Clark Website - Main TypeScript
 // Optimized and type-safe version
-// Utility functions
-function debounce(func, wait) {
-    let timeout = null;
-    return function executedFunction(...args) {
-        const later = () => {
-            timeout = null;
-            func(...args);
-        };
-        if (timeout)
-            clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-function throttle(func, limit) {
-    let inThrottle = false;
-    return function (...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => { inThrottle = false; }, limit);
-        }
-    };
-}
 // DOM loaded event
 document.addEventListener('DOMContentLoaded', () => {
     // Add JS class to enable animations
@@ -354,6 +331,7 @@ if (document.querySelector('.filter-btn')) {
 if (document.querySelector('img[data-src]')) {
     initLazyLoading();
 }
+// GSAP animations (if GSAP is loaded)
 if (typeof gsap !== 'undefined') {
     // Hero animation timeline
     const heroTl = gsap.timeline();

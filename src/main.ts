@@ -13,29 +13,9 @@ interface IntersectionObserverConfig {
   rootMargin: string;
 }
 
-// Utility functions
-function debounce<T extends (...args: any[]) => any>(func: T, wait: number): (...args: Parameters<T>) => void {
-  let timeout: ReturnType<typeof setTimeout> | null = null;
-  return function executedFunction(...args: Parameters<T>): void {
-    const later = (): void => {
-      timeout = null;
-      func(...args);
-    };
-    if (timeout) clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
-function throttle<T extends (...args: any[]) => any>(func: T, limit: number): (...args: Parameters<T>) => void {
-  let inThrottle = false;
-  return function(this: any, ...args: Parameters<T>): void {
-    if (!inThrottle) {
-      func.apply(this, args);
-      inThrottle = true;
-      setTimeout((): void => { inThrottle = false; }, limit);
-    }
-  };
-}
+// GSAP type declarations
+declare const gsap: any;
+declare const ScrollTrigger: any;
 
 // DOM loaded event
 document.addEventListener('DOMContentLoaded', (): void => {
@@ -414,8 +394,6 @@ if (document.querySelector('img[data-src]')) {
 }
 
 // GSAP animations (if GSAP is loaded)
-declare const gsap: any;
-declare const ScrollTrigger: any;
 
 if (typeof gsap !== 'undefined') {
   // Hero animation timeline
