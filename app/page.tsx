@@ -9,10 +9,11 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/beauty/beauty-1.jpg"
+            src="/images/DSC08907EDIT.JPG"
             alt=""
             fill
             className="object-cover"
+            style={{ objectPosition: 'center 20%' }}
             priority
           />
           <div className="absolute inset-0 bg-black/20" />
@@ -20,7 +21,7 @@ export default function Home() {
 
         {/* Hero Content with Glassmorphism */}
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
-          <div className="glass-card rounded-3xl p-8 sm:p-12 max-w-4xl mx-auto animate-fade-in-up">
+          <div className="glass-card-light rounded-3xl p-8 sm:p-12 max-w-4xl mx-auto animate-fade-in-up">
             <h1 className="font-playfair text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-4">
               KAYLA CLARK
             </h1>

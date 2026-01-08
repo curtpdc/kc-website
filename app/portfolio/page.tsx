@@ -52,7 +52,16 @@ export default function PortfolioPage() {
     <>
       {/* Hero Section */}
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden mt-20">
-        <div className="absolute inset-0 z-0 bg-gradient-to-br from-gray-100 to-gray-200" />
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/beauty/beauty-2.jpg"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/30" />
+        </div>
 
         <div className="relative z-10 text-center px-4">
           <div className="glass-card rounded-3xl p-8 sm:p-12 max-w-3xl mx-auto animate-fade-in-up">
