@@ -639,7 +639,8 @@ html {
         grid-template-columns: 1fr;
     }
     
-    .work-carousel .work-item {
+    .work-carousel .work-item,
+    .portfolio-carousel .work-item {
         flex: 0 0 85%;
         min-width: 250px;
     }
@@ -673,7 +674,8 @@ html {
 }
 
 @media (min-width: 769px) and (max-width: 1200px) {
-    .work-carousel .work-item {
+    .work-carousel .work-item,
+    .portfolio-carousel .work-item {
         flex: 0 0 calc(50% - 0.75rem);
     }
 }
@@ -683,7 +685,8 @@ html {
         object-position: center 30%;
     }
     
-    .work-carousel .work-item {
+    .work-carousel .work-item,
+    .portfolio-carousel .work-item {
         flex: 0 0 calc(33.333% - 1rem);
     }
 }
@@ -869,6 +872,33 @@ html {
 .work-carousel .work-item {
     flex: 0 0 calc(33.333% - 1rem);
     min-width: 280px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    background: var(--secondary-color);
+    aspect-ratio: 3/4;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transition: var(--transition-smooth);
+}
+
+.work-carousel .work-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.work-carousel .work-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.portfolio-carousel .work-item {
+    flex: 0 0 calc(33.333% - 1rem);
+    min-width: 300px;
+    aspect-ratio: 3/4;
 }
 
 .carousel-nav {
