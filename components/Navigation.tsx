@@ -21,7 +21,6 @@ export default function Navigation() {
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
     { href: '/portfolio', label: 'Portfolio' },
-    { href: '/creative-direction', label: 'Creative Direction' },
     { href: '#contact', label: 'Book Kayla' },
   ]
 
