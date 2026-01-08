@@ -22,14 +22,17 @@ jobs:
       
       - name: Check for deployment token
         id: check_token
+        env:
+          TOKEN_PRIMARY: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          TOKEN_LEGACY: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WITTY_TREE_03584700F }}
         run: |
-          if [ -z "${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}" ] && [ -z "${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WITTY_TREE_03584700F }}" ]; then
+          if [ -n "$TOKEN_PRIMARY" ] || [ -n "$TOKEN_LEGACY" ]; then
+            echo "has_token=true" >> $GITHUB_OUTPUT
+          else
             echo "has_token=false" >> $GITHUB_OUTPUT
             echo "⚠️ Warning: No Azure Static Web Apps deployment token found."
             echo "Please configure the AZURE_STATIC_WEB_APPS_API_TOKEN secret in your repository settings."
             echo "Deployment will be skipped."
-          else
-            echo "has_token=true" >> $GITHUB_OUTPUT
           fi
       
       - name: Build And Deploy
@@ -37,7 +40,7 @@ jobs:
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN != '' && secrets.AZURE_STATIC_WEB_APPS_API_TOKEN || secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WITTY_TREE_03584700F }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN && secrets.AZURE_STATIC_WEB_APPS_API_TOKEN || secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WITTY_TREE_03584700F }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
@@ -52,9 +55,24 @@ jobs:
     runs-on: ubuntu-latest
     name: Close Pull Request Job
     steps:
+      - name: Check for deployment token
+        id: check_token
+        env:
+          TOKEN_PRIMARY: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          TOKEN_LEGACY: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WITTY_TREE_03584700F }}
+        run: |
+          if [ -n "$TOKEN_PRIMARY" ] || [ -n "$TOKEN_LEGACY" ]; then
+            echo "has_token=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_token=false" >> $GITHUB_OUTPUT
+            echo "⚠️ Warning: No Azure Static Web Apps deployment token found."
+            echo "Cannot close pull request deployment."
+          fi
+      
       - name: Close Pull Request
+        if: steps.check_token.outputs.has_token == 'true'
         id: closepullrequest
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN != '' && secrets.AZURE_STATIC_WEB_APPS_API_TOKEN || secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WITTY_TREE_03584700F }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN && secrets.AZURE_STATIC_WEB_APPS_API_TOKEN || secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WITTY_TREE_03584700F }}
           action: "close"
