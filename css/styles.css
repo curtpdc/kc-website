@@ -930,6 +930,53 @@ html {
     background: var(--primary-color);
 }
 
+/* Experience and Expertise Section Styles */
+.experience-content {
+    max-width: 100%;
+}
+
+.experience-content > div {
+    width: 100%;
+}
+
+.experience-content h3 {
+    text-align: left;
+}
+
+.experience-content ul {
+    width: 100%;
+}
+
+.experience-content li {
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+/* Contact Info Styles */
+.contact-info {
+    background: rgba(248, 248, 248, 0.5);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-top: 1rem;
+}
+
+.contact-info p {
+    margin-bottom: 0.8rem;
+}
+
+.contact-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+}
+
+.contact-info a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
 /* Hero Background */
 .hero-background {
     position: absolute;
