@@ -3,6 +3,5 @@ old-images-backup/
 node_modules/
 *.log
 .DS_Store
-*.map
 js/*.d.ts
 js/*.js.map

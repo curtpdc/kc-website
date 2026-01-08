@@ -1,6 +1,29 @@
 "use strict";
 // Kayla Clark Website - Main TypeScript
 // Optimized and type-safe version
+// Utility functions
+function debounce(func, wait) {
+    let timeout = null;
+    return function executedFunction(...args) {
+        const later = () => {
+            timeout = null;
+            func(...args);
+        };
+        if (timeout)
+            clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+function throttle(func, limit) {
+    let inThrottle = false;
+    return function (...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => { inThrottle = false; }, limit);
+        }
+    };
+}
 // DOM loaded event
 document.addEventListener('DOMContentLoaded', () => {
     // Add JS class to enable animations
@@ -75,15 +98,16 @@ function initScrollAnimations() {
     document.querySelectorAll('.fade-in').forEach((el) => {
         observer.observe(el);
     });
-    // Parallax effect for hero section
-    window.addEventListener('scroll', () => {
+    // Parallax effect for hero section (throttled for performance)
+    const parallaxScroll = throttle(() => {
         const scrolled = window.pageYOffset;
         const hero = document.querySelector('.hero');
         if (hero) {
             const rate = scrolled * -0.5;
             hero.style.transform = `translateY(${rate}px)`;
         }
-    });
+    }, 16); // ~60fps
+    window.addEventListener('scroll', parallaxScroll);
 }
 // Lightbox functionality
 function initLightbox() {
@@ -307,29 +331,6 @@ function initLazyLoading() {
         });
     });
     images.forEach((img) => imageObserver.observe(img));
-}
-// Utility functions
-function debounce(func, wait) {
-    let timeout = null;
-    return function executedFunction(...args) {
-        const later = () => {
-            timeout = null;
-            func(...args);
-        };
-        if (timeout)
-            clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-function throttle(func, limit) {
-    let inThrottle = false;
-    return function (...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => { inThrottle = false; }, limit);
-        }
-    };
 }
 // Preload critical images
 function preloadImages(urls) {
