@@ -386,11 +386,6 @@ function throttle<T extends (...args: any[]) => any>(func: T, limit: number): (.
   };
 }
 
-// Performance optimizations
-window.addEventListener('scroll', throttle((): void => {
-  // Throttled scroll events
-}, 16)); // ~60fps
-
 // Preload critical images
 function preloadImages(urls: string[]): void {
   urls.forEach((url: string): void => {

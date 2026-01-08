@@ -331,10 +331,6 @@ function throttle(func, limit) {
         }
     };
 }
-// Performance optimizations
-window.addEventListener('scroll', throttle(() => {
-    // Throttled scroll events
-}, 16)); // ~60fps
 // Preload critical images
 function preloadImages(urls) {
     urls.forEach((url) => {
