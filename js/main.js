@@ -397,6 +397,27 @@ function initCarousel() {
         else {
             itemsPerView = 3;
         }
+        // Recreate dots when itemsPerView changes
+        const totalSlides = Math.ceil(items.length / itemsPerView);
+        if (dotsContainer) {
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'carousel-dot';
+                if (i === 0)
+                    dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    currentPosition = i;
+                    updateCarousel();
+                });
+                dotsContainer.appendChild(dot);
+            }
+        }
+        // Reset position if it's out of bounds
+        const maxPosition = totalSlides - 1;
+        if (currentPosition > maxPosition) {
+            currentPosition = maxPosition;
+        }
         updateCarousel();
     };
     // Create dots
@@ -419,12 +440,13 @@ function initCarousel() {
     const updateCarousel = () => {
         const itemWidth = items[0]?.offsetWidth || 0;
         const gap = 24; // 1.5rem
-        const offset = currentPosition * (itemWidth + gap) * itemsPerView;
+        const offset = currentPosition * itemsPerView * (itemWidth + gap);
         carousel.style.transform = `translateX(-${offset}px)`;
         // Update dots
+        const currentDot = Math.floor(currentPosition);
         const dots = dotsContainer?.querySelectorAll('.carousel-dot');
         dots?.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentPosition);
+            dot.classList.toggle('active', index === currentDot);
         });
     };
     // Navigation buttons
@@ -461,8 +483,14 @@ function initCarousel() {
             }
         }
     });
-    // Update on resize
-    window.addEventListener('resize', updateItemsPerView);
+    // Update on resize with throttling
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            updateItemsPerView();
+        }, 150);
+    });
     updateItemsPerView();
 }
 //# sourceMappingURL=main.js.map

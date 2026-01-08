@@ -276,8 +276,8 @@ html {
 }
 
 .btn:hover::before {
-    width: 300px;
-    height: 300px;
+    width: 200%;
+    height: 200%;
 }
 
 .btn-primary {
