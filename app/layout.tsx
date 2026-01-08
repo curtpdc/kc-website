@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
@@ -39,11 +39,12 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/manifest.json',
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
   themeColor: '#2c2c2c',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-  },
 }
 
 export default function RootLayout({
