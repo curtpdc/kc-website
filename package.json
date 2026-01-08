@@ -6,7 +6,10 @@
     "build:ts": "tsc",
     "watch:ts": "tsc --watch",
     "dev": "npm run watch:ts",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "build": "npm run build:ts",
+    "serve": "python3 -m http.server 8080",
+    "start": "npm run build && npm run serve"
   },
   "keywords": ["portfolio", "model", "website"],
   "author": "Kayla Clark",
