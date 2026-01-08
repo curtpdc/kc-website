@@ -122,17 +122,24 @@ function initScrollAnimations(): void {
     observer.observe(el);
   });
 
-  // Parallax effect for hero section (throttled for performance)
-  const parallaxScroll = throttle((): void => {
+  // Parallax effect for hero section (throttled with RAF for performance)
+  let ticking = false;
+  const parallaxScroll = (): void => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero') as HTMLElement | null;
     if (hero) {
       const rate = scrolled * -0.5;
       hero.style.transform = `translateY(${rate}px)`;
     }
-  }, 16); // ~60fps
+    ticking = false;
+  };
 
-  window.addEventListener('scroll', parallaxScroll);
+  window.addEventListener('scroll', (): void => {
+    if (!ticking) {
+      window.requestAnimationFrame(parallaxScroll);
+      ticking = true;
+    }
+  });
 }
 
 // Lightbox functionality
@@ -310,7 +317,7 @@ function showNotification(message: string, type: keyof NotificationType = 'info'
   setTimeout((): void => {
     notification.style.transform = 'translateX(400px)';
     setTimeout((): void => {
-      document.body.removeChild(notification);
+      notification.remove(); // Safe removal
     }, 300);
   }, 5000);
 }

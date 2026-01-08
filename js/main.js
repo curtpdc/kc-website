@@ -98,16 +98,23 @@ function initScrollAnimations() {
     document.querySelectorAll('.fade-in').forEach((el) => {
         observer.observe(el);
     });
-    // Parallax effect for hero section (throttled for performance)
-    const parallaxScroll = throttle(() => {
+    // Parallax effect for hero section (throttled with RAF for performance)
+    let ticking = false;
+    const parallaxScroll = () => {
         const scrolled = window.pageYOffset;
         const hero = document.querySelector('.hero');
         if (hero) {
             const rate = scrolled * -0.5;
             hero.style.transform = `translateY(${rate}px)`;
         }
-    }, 16); // ~60fps
-    window.addEventListener('scroll', parallaxScroll);
+        ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(parallaxScroll);
+            ticking = true;
+        }
+    });
 }
 // Lightbox functionality
 function initLightbox() {
@@ -262,7 +269,7 @@ function showNotification(message, type = 'info') {
     setTimeout(() => {
         notification.style.transform = 'translateX(400px)';
         setTimeout(() => {
-            document.body.removeChild(notification);
+            notification.remove(); // Safe removal
         }, 300);
     }, 5000);
 }
