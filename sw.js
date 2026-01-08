@@ -10,7 +10,6 @@ const CORE_ASSETS = [
   '/index.html',
   '/about.html',
   '/portfolio.html',
-  '/creative-direction.html',
   '/css/styles.css',
   '/js/main.js',
   '/manifest.json'
