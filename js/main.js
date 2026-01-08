@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initLightbox();
     initContactForm();
     initSmoothScrolling();
+    initHeroSlideshow();
+    initCarousel();
 });
 // Navigation functionality
 function initNavigation() {
@@ -355,5 +357,112 @@ if (typeof gsap !== 'undefined') {
             }
         });
     });
+}
+// Hero slideshow functionality
+function initHeroSlideshow() {
+    const heroBackground = document.querySelector('.hero-background.slideshow');
+    if (!heroBackground)
+        return;
+    const images = heroBackground.querySelectorAll('img');
+    if (images.length <= 1)
+        return;
+    let currentIndex = 0;
+    setInterval(() => {
+        images[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add('active');
+    }, 5000); // Change image every 5 seconds
+}
+// Carousel functionality
+function initCarousel() {
+    const carousel = document.querySelector('.work-carousel');
+    const container = document.querySelector('.work-carousel-container');
+    const prevBtn = container?.querySelector('.carousel-nav.prev');
+    const nextBtn = container?.querySelector('.carousel-nav.next');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    if (!carousel || !container)
+        return;
+    const items = carousel.querySelectorAll('.work-item');
+    let currentPosition = 0;
+    let itemsPerView = 3;
+    // Calculate items per view based on screen size
+    const updateItemsPerView = () => {
+        const width = window.innerWidth;
+        if (width < 768) {
+            itemsPerView = 1;
+        }
+        else if (width < 1200) {
+            itemsPerView = 2;
+        }
+        else {
+            itemsPerView = 3;
+        }
+        updateCarousel();
+    };
+    // Create dots
+    const totalSlides = Math.ceil(items.length / itemsPerView);
+    if (dotsContainer) {
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'carousel-dot';
+            if (i === 0)
+                dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                currentPosition = i;
+                updateCarousel();
+            });
+            dotsContainer.appendChild(dot);
+        }
+    }
+    // Update carousel position
+    const updateCarousel = () => {
+        const itemWidth = items[0]?.offsetWidth || 0;
+        const gap = 24; // 1.5rem
+        const offset = currentPosition * (itemWidth + gap) * itemsPerView;
+        carousel.style.transform = `translateX(-${offset}px)`;
+        // Update dots
+        const dots = dotsContainer?.querySelectorAll('.carousel-dot');
+        dots?.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentPosition);
+        });
+    };
+    // Navigation buttons
+    prevBtn?.addEventListener('click', () => {
+        if (currentPosition > 0) {
+            currentPosition--;
+            updateCarousel();
+        }
+    });
+    nextBtn?.addEventListener('click', () => {
+        const maxPosition = Math.ceil(items.length / itemsPerView) - 1;
+        if (currentPosition < maxPosition) {
+            currentPosition++;
+            updateCarousel();
+        }
+    });
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    });
+    carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                // Swiped left
+                nextBtn?.click();
+            }
+            else {
+                // Swiped right
+                prevBtn?.click();
+            }
+        }
+    });
+    // Update on resize
+    window.addEventListener('resize', updateItemsPerView);
+    updateItemsPerView();
 }
 //# sourceMappingURL=main.js.map
