@@ -1,5 +1,42 @@
 # Quick Deployment Guide
 
+## Azure Static Web Apps Deployment
+
+This project includes an automated GitHub Actions workflow for deploying to Azure Static Web Apps.
+
+### Setup Instructions
+
+1. **Create Azure Static Web App**
+   - Go to [Azure Portal](https://portal.azure.com)
+   - Create a new Static Web App resource
+   - During creation, link it to this GitHub repository
+   - Azure will automatically generate a deployment token
+
+2. **Configure GitHub Secret**
+   - The deployment token is automatically added as a repository secret named `AZURE_STATIC_WEB_APPS_API_TOKEN`
+   - If you need to add it manually:
+     - Go to your repository Settings > Secrets and variables > Actions
+     - Add a new secret named `AZURE_STATIC_WEB_APPS_API_TOKEN`
+     - Paste the deployment token from Azure
+
+3. **Automatic Deployment**
+   - The workflow automatically triggers on:
+     - Push to `main` or `master` branch
+     - Pull requests (creates preview environments)
+   - View deployment status in the "Actions" tab of your repository
+
+4. **Workflow Configuration**
+   - Workflow file: `.github/workflows/azure-static-web-apps.yml`
+   - App location: `/` (root directory)
+   - No build step required (static HTML site)
+   - Output location: `/` (serves files directly)
+
+### Custom Domain (Optional)
+After deployment, you can configure a custom domain:
+- In Azure Portal, go to your Static Web App
+- Navigate to "Custom domains"
+- Follow the instructions to add your domain
+
 ## Pre-Deployment Checklist
 
 ### 1. Update Configuration Files
