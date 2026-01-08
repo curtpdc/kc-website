@@ -75,21 +75,13 @@ function initScrollAnimations() {
     document.querySelectorAll('.fade-in').forEach((el) => {
         observer.observe(el);
     });
-    // Parallax effect for hero section (throttled with RAF for performance)
-    let ticking = false;
-    const parallaxScroll = () => {
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const hero = document.querySelector('.hero');
         if (hero) {
             const rate = scrolled * -0.5;
             hero.style.transform = `translateY(${rate}px)`;
-        }
-        ticking = false;
-    };
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(parallaxScroll);
-            ticking = true;
         }
     });
 }
@@ -246,7 +238,7 @@ function showNotification(message, type = 'info') {
     setTimeout(() => {
         notification.style.transform = 'translateX(400px)';
         setTimeout(() => {
-            notification.remove(); // Safe removal
+            document.body.removeChild(notification);
         }, 300);
     }, 5000);
 }
@@ -316,6 +308,33 @@ function initLazyLoading() {
     });
     images.forEach((img) => imageObserver.observe(img));
 }
+// Utility functions
+function debounce(func, wait) {
+    let timeout = null;
+    return function executedFunction(...args) {
+        const later = () => {
+            timeout = null;
+            func(...args);
+        };
+        if (timeout)
+            clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+function throttle(func, limit) {
+    let inThrottle = false;
+    return function (...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => { inThrottle = false; }, limit);
+        }
+    };
+}
+// Performance optimizations
+window.addEventListener('scroll', throttle(() => {
+    // Throttled scroll events
+}, 16)); // ~60fps
 // Preload critical images
 function preloadImages(urls) {
     urls.forEach((url) => {
@@ -331,7 +350,6 @@ if (document.querySelector('.filter-btn')) {
 if (document.querySelector('img[data-src]')) {
     initLazyLoading();
 }
-// GSAP animations (if GSAP is loaded)
 if (typeof gsap !== 'undefined') {
     // Hero animation timeline
     const heroTl = gsap.timeline();

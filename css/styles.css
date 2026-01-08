@@ -311,8 +311,8 @@ html {
 /* Featured Work Grid */
 .work-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
     margin-bottom: 3rem;
 }
 
@@ -320,7 +320,7 @@ html {
     position: relative;
     overflow: hidden;
     border-radius: 10px;
-    aspect-ratio: 4/5;
+    aspect-ratio: 1/1;
     cursor: pointer;
     transition: var(--transition-smooth);
 }
@@ -604,8 +604,8 @@ html {
 /* Portfolio Gallery Styles */
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
     margin-bottom: 3rem;
 }
 
@@ -613,7 +613,7 @@ html {
     position: relative;
     overflow: hidden;
     border-radius: 15px;
-    aspect-ratio: 3/4;
+    aspect-ratio: 1/1;
     cursor: pointer;
     transition: var(--transition-smooth);
     background: var(--secondary-color);
