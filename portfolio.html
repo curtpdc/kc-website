@@ -28,46 +28,6 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
-    
-    <style>
-        .filter-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .filter-btn {
-            padding: 10px 20px;
-            border: 2px solid var(--primary-color);
-            background: transparent;
-            color: var(--primary-color);
-            border-radius: 25px;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-        
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: var(--primary-color);
-            color: var(--white);
-        }
-        
-        .portfolio-item {
-            transition: var(--transition-smooth);
-        }
-        
-        .portfolio-item.hidden {
-            opacity: 0;
-            transform: scale(0.8);
-            pointer-events: none;
-        }
-    </style>
 </head>
 <body>
     <!-- Skip to main content for accessibility -->
@@ -95,232 +55,160 @@
     <section class="hero" style="height: 60vh; background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);">
         <div class="hero-content" id="main-content">
             <h1 class="hero-title" style="font-size: clamp(2.5rem, 6vw, 4rem);">Portfolio</h1>
-            <p class="hero-description">A curated collection of modeling and creative work</p>
+            <p class="hero-description">A curated collection of modeling work</p>
         </div>
     </section>
 
-    <!-- Portfolio Filter -->
+    <!-- Portfolio Grid -->
     <section class="section">
         <div class="container">
-            <div class="filter-buttons fade-in">
-                <button class="filter-btn active" data-filter="all">All Work</button>
-                <button class="filter-btn" data-filter="beauty">Beauty</button>
-                <button class="filter-btn" data-filter="editorial">Editorial</button>
-                <button class="filter-btn" data-filter="commercial">Commercial</button>
-                <button class="filter-btn" data-filter="motion">In Motion</button>
-            </div>
 
             <!-- Portfolio Grid -->
             <div class="portfolio-grid fade-in">
-                <!-- Beauty Category -->
-                <div class="portfolio-item" data-category="beauty">
-                    <img src="images/beauty/beauty-1.jpg" alt="Soft Glam Beauty" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/beauty/beauty-1.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Soft Glam Beauty</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
                 
-                <div class="portfolio-item" data-category="beauty">
-                    <img src="images/beauty/beauty-2.jpg" alt="Golden Hour Beauty" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/beauty/beauty-2.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Golden Hour Beauty</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
                 
-                <div class="portfolio-item" data-category="beauty">
-                    <img src="images/beauty/beauty-3.jpg" alt="Natural Beauty Portrait" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/beauty/beauty-3.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Natural Beauty Portrait</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
                 
-                <div class="portfolio-item" data-category="beauty">
-                    <img src="images/beauty/beauty-4.jpg" alt="Studio Beauty Shot" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/beauty/beauty-4.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Studio Beauty Shot</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
 
-                <!-- Editorial Category -->
-                <div class="portfolio-item" data-category="editorial">
-                    <img src="images/editorial/editorial-1.jpg" alt="Urban Editorial Fashion" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/editorial/editorial-1.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Urban Editorial Fashion</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
                 
-                <div class="portfolio-item" data-category="editorial">
-                    <img src="images/editorial/editorial-2.jpg" alt="High Fashion Editorial" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/editorial/editorial-2.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>High Fashion Editorial</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
                 
-                <div class="portfolio-item" data-category="editorial">
-                    <img src="images/editorial/editorial-3.jpg" alt="Vintage Editorial Concept" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/editorial/editorial-3.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Vintage Editorial Concept</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
                 
-                <div class="portfolio-item" data-category="editorial">
-                    <img src="images/editorial/editorial-4.jpg" alt="Fashion Editorial Portrait" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/editorial/editorial-4.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Fashion Editorial Portrait</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
 
-                <!-- Commercial Category -->
-                <div class="portfolio-item" data-category="commercial">
-                    <img src="images/commercial/commercial-1.jpg" alt="Lifestyle Brand Campaign" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/commercial/commercial-1.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Lifestyle Brand Campaign</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
                 
-                <div class="portfolio-item" data-category="commercial">
-                    <img src="images/commercial/commercial-2.jpg" alt="Commercial Beauty Campaign" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/commercial/commercial-2.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Commercial Beauty Campaign</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
                 
-                <div class="portfolio-item" data-category="commercial">
-                    <img src="images/commercial/commercial-3.jpg" alt="Brand Ambassador Shoot" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/commercial/commercial-3.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Brand Ambassador Shoot</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
                 
-                <div class="portfolio-item" data-category="commercial">
-                    <img src="images/commercial/commercial-4.jpg" alt="Product Campaign" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/commercial/commercial-4.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Product Campaign</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
 
-                <!-- Motion Category -->
-                <div class="portfolio-item" data-category="motion">
-                    <img src="images/beauty/beauty-5.jpg" alt="Behind the Scenes Video" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/beauty/beauty-5.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Behind the Scenes Video</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
                 
-                <div class="portfolio-item" data-category="motion">
-                    <img src="images/editorial/editorial-5.jpg" alt="Motion Content Creation" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/beauty/beauty-6.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Motion Content Creation</span>
+                        <span>Portfolio Image</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <img src="images/beauty/beauty-7.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
+                        <span>Portfolio Image</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <img src="images/beauty/beauty-8.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
+                        <span>Portfolio Image</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <img src="images/editorial/editorial-5.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
                 
-                <div class="portfolio-item" data-category="motion">
-                    <div class="placeholder-image" style="width: 100%; height: 100%;">
-                        <span>Video Production</span>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="motion">
-                    <div class="placeholder-image" style="width: 100%; height: 100%;">
-                        <span>Creative Video Content</span>
+                <div class="portfolio-item">
+                    <img src="images/editorial/editorial-6.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
 
-                <!-- Additional Beauty -->
-                <div class="portfolio-item" data-category="beauty">
-                    <img src="images/beauty/beauty-5.jpg" alt="Classic Beauty Portrait" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/editorial/editorial-7.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Classic Beauty Portrait</span>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="beauty">
-                    <img src="images/beauty/beauty-6.jpg" alt="Artistic Beauty Shot" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Artistic Beauty Shot</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
 
-                <div class="portfolio-item" data-category="beauty">
-                    <img src="images/beauty/beauty-7.jpg" alt="Elegant Beauty Portrait" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/editorial/editorial-8.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Elegant Beauty Portrait</span>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
 
-                <div class="portfolio-item" data-category="beauty">
-                    <img src="images/beauty/beauty-8.jpg" alt="Timeless Beauty" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="portfolio-item">
+                    <img src="images/commercial/commercial-5.jpg" alt="Portfolio Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Timeless Beauty</span>
-                    </div>
-                </div>
-
-                <!-- Additional Editorial -->
-                <div class="portfolio-item" data-category="editorial">
-                    <img src="images/editorial/editorial-5.jpg" alt="Contemporary Editorial" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Contemporary Editorial</span>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="editorial">
-                    <img src="images/editorial/editorial-6.jpg" alt="Artistic Editorial Concept" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Artistic Editorial Concept</span>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="editorial">
-                    <img src="images/editorial/editorial-7.jpg" alt="Fashion Forward Editorial" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Fashion Forward Editorial</span>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="editorial">
-                    <img src="images/editorial/editorial-8.jpg" alt="Statement Editorial" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Statement Editorial</span>
-                    </div>
-                </div>
-
-                <!-- Additional Commercial -->
-                <div class="portfolio-item" data-category="commercial">
-                    <img src="images/commercial/commercial-5.jpg" alt="Lifestyle Campaign" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="placeholder-image" style="width: 100%; height: 100%; display: none;">
-                        <span>Lifestyle Campaign</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Category Descriptions -->
-    <section class="section" style="background: var(--secondary-color);">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Portfolio Categories</h2>
-            </div>
-            <div class="category-descriptions fade-in">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <h3 style="color: var(--accent-color); margin-bottom: 1rem;">Beauty</h3>
-                        <p>Soft glam, clean beauty, and expressive portrait work that captures natural elegance and timeless appeal.</p>
-                    </div>
-                    
-                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <h3 style="color: var(--accent-color); margin-bottom: 1rem;">Editorial</h3>
-                        <p>Fashion-forward concepts with bold styling and expressive posing that tell compelling visual stories.</p>
-                    </div>
-                    
-                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <h3 style="color: var(--accent-color); margin-bottom: 1rem;">Commercial</h3>
-                        <p>Brand-focused imagery with a clean, polished aesthetic designed to connect with target audiences.</p>
-                    </div>
-                    
-                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <h3 style="color: var(--accent-color); margin-bottom: 1rem;">In Motion</h3>
-                        <p>Short clips, reels, and behind-the-scenes moments that bring static imagery to life.</p>
+                        <span>Portfolio Image</span>
                     </div>
                 </div>
             </div>
@@ -331,10 +219,10 @@
     <section class="section cta">
         <div class="container">
             <div class="fade-in">
-                <h2>Let's Create Your Next Project</h2>
-                <p>Interested in working together? Whether you have a specific vision or want to explore creative possibilities, let's discuss how we can bring your ideas to life.</p>
-                <a href="mailto:kceclark02@gmail.com?subject=I'd Like To Connect" class="btn btn-outline">
-                    <i class="fas fa-envelope" style="margin-right: 8px;"></i>Start a Conversation
+                <h2>Let's Work Together</h2>
+                <p>Interested in booking? Contact me via email for inquiries.</p>
+                <a href="mailto:kceclark02@gmail.com?subject=Modeling Inquiry" class="btn btn-outline">
+                    <i class="fas fa-envelope" style="margin-right: 8px;"></i>Email for Bookings
                 </a>
             </div>
         </div>
@@ -377,37 +265,5 @@
 
     <!-- JavaScript -->
     <script src="js/main.js"></script>
-    <script>
-        // Portfolio filtering functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-            filterButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const filter = btn.dataset.filter;
-                    
-                    // Update active button
-                    filterButtons.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-
-                    // Filter items with smooth animation
-                    portfolioItems.forEach(item => {
-                        if (filter === 'all' || item.dataset.category === filter) {
-                            item.classList.remove('hidden');
-                            item.style.display = 'block';
-                        } else {
-                            item.classList.add('hidden');
-                            setTimeout(() => {
-                                if (item.classList.contains('hidden')) {
-                                    item.style.display = 'none';
-                                }
-                            }, 300);
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 </body>
 </html>
